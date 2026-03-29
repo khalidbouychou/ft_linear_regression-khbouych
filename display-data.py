@@ -140,7 +140,12 @@ def plot(theta0, theta1, mileages, prices, metrics):
     plt.tight_layout()
     plt.savefig("bonus_plot.png", dpi=150)
     print("Plot saved -> bonus_plot.png")
-    plt.show()
+    try:
+        plt.show()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        plt.close()
 
 
 # ── main ──────────────────────────────────────────────────────────────────────
@@ -154,4 +159,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nInterrupted.")
+        plt.close("all")
+        exit(0)
